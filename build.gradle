@@ -7,7 +7,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'tw.com.chinalife'
+group = 'tw.com.rex'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -21,13 +21,18 @@ dependencyManagement {
     }
 }
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
+    // spring boot
     implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+    // spring cloud
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
+    // test
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-}
-
-test {
-    useJUnitPlatform()
 }
